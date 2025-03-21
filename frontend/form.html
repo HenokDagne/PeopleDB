@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 flex items-center justify-center min-h-screen">
+
+   <form action="http://localhost/form_project/backend/process.php" 
+         method="POST" 
+         enctype="multipart/form-data" 
+         class="bg-gray-800 text-white p-6 rounded-lg shadow-md w-full max-w-lg">
+         
+        <!-- Profile Picture -->
+        <div class="flex items-center space-x-4 mb-6">
+            <img id="previewImage" src="https://via.placeholder.com/80" 
+                 class="w-16 h-16 rounded-full border-2 border-gray-600">
+            <div>
+                <label for="profileImage" class="text-sm text-gray-400 cursor-pointer">
+                    Change profile photo
+                </label>
+                <input type="file" id="profileImage" name="image" accept="image/*" 
+                       class="hidden" onchange="previewFile()">
+            </div>
+        </div>
+
+        <!-- Full Name -->
+        <div class="mb-4">
+            <label class="block text-gray-400">Name</label>
+            <input type="text" name="fullname" placeholder="Your Name" 
+                   class="bg-gray-700 text-white p-2 w-full rounded focus:ring focus:ring-blue-400">
+        </div>
+
+        <!-- Email -->
+        <div class="mb-4">
+            <label class="block text-gray-400">Email Address</label>
+            <input type="email" name="email" placeholder="Enter your email" 
+                   class="bg-gray-700 text-white p-2 w-full rounded focus:ring focus:ring-blue-400">
+        </div>
+
+    
+
+        <!-- Password -->
+        <div class="mb-4">
+            <label class="block text-gray-400">Password</label>
+            <input type="password" name="password" placeholder="Enter your password" 
+                   class="bg-gray-700 text-white p-2 w-full rounded focus:ring focus:ring-blue-400">
+        </div>
+
+        <!-- Phone -->
+        <div class="mb-4">
+            <label class="block text-gray-400">Phone Number</label>
+            <input type="tel" name="phone" placeholder="Enter your phone number" 
+                   class="bg-gray-700 text-white p-2 w-full rounded focus:ring focus:ring-blue-400" required>
+        </div>
+
+        <!-- Description -->
+        <div class="mb-4">
+            <label class="block text-gray-400">Description</label>
+            <textarea name="description" placeholder="Write about yourself" 
+                      class="bg-gray-700 text-white p-2 w-full rounded focus:ring focus:ring-blue-400"></textarea>
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex justify-end space-x-2 mt-6">
+            <button type="button" 
+                    class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded">
+                Cancel
+            </button>
+            <button type="submit" 
+                    class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
+                Save Changes
+            </button>
+        </div>
+
+   </form>
+
+   <script>
+       function previewFile() {
+           const preview = document.getElementById('previewImage');
+           const file = document.getElementById('profileImage').files[0];
+           const reader = new FileReader();
+           
+           reader.addEventListener("load", function () {
+               preview.src = reader.result;
+           }, false);
+
+           if (file) {
+               reader.readAsDataURL(file);
+           }
+       }
+   </script>
+
+</body>
+</html>
